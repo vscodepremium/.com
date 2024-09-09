@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Novo Site</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header class="header">
+        <div class="header-container">
+            <h1>Meu Novo Site</h1>
+            <nav class="navbar">
+                <a href="#home">Home</a>
+                <a href="#services">Serviços</a>
+                <a href="#portfolio">Portfólio</a>
+                <a href="#contact">Contato</a>
+            </nav>
+            <div class="user-account" id="userAccount">
+                <div class="user-icon" id="userIcon"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Conteúdo principal -->
+    <main>
+        <!-- Seção de boas-vindas -->
+        <section class="home" id="home">
+            <div class="home-content">
+                <h2>Bem-vindo ao Meu Novo Site!</h2>
+                <p>Descubra nossos serviços incríveis e como podemos ajudar você a alcançar suas metas.</p>
+                <a href="#contact" class="cta-button">Entre em Contato</a>
+            </div>
+        </section>
+
+        <!-- Seção de serviços -->
+        <section class="services" id="services">
+            <div class="services-container">
+                <div class="service-item">
+                    <h3>Serviço 1</h3>
+                    <p>Descrição do serviço 1.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Serviço 2</h3>
+                    <p>Descrição do serviço 2.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Serviço 3</h3>
+                    <p>Descrição do serviço 3.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de portfólio -->
+        <section class="portfolio" id="portfolio">
+            <div class="portfolio-container">
+                <h2>Portfólio</h2>
+                <p>Aqui estão alguns dos nossos projetos recentes.</p>
+                <!-- Adicione seus projetos aqui -->
+            </div>
+        </section>
+
+        <!-- Seção de contato -->
+        <section class="contact" id="contact">
+            <div class="contact-container">
+                <h2>Entre em Contato</h2>
+                <p>Para mais informações ou dúvidas, entre em contato conosco. <a href="mailto:contato@meunovosite.com">Envie um e-mail</a>.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2024 Meu Novo Site. Todos os direitos reservados.</p>
+            <nav class="footer-nav">
+                <a href="#home">Home</a>
+                <a href="#services">Serviços</a>
+                <a href="#portfolio">Portfólio</a>
+                <a href="#contact">Contato</a>
+            </nav>
+        </div>
+    </footer>
+
+    <!-- Modal de perfil -->
+    <div id="profileModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Perfil do Usuário</h2>
+            <form id="profileForm">
+                <label for="username">Nome de Usuário:</label>
+                <input type="text" id="username" name="username" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="password">Senha:</label>
+                <input type="password" id="password" name="password" required>
+                <button type="submit">Salvar Alterações</button>
+            </form>
+            <button id="deleteAccount" class="delete-button">Excluir Conta</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const userAccount = document.getElementById('userAccount');
+            const userIcon = document.getElementById('userIcon');
+            const profileModal = document.getElementById('profileModal');
+            const closeModal = document.querySelector('.close');
+            const profileForm = document.getElementById('profileForm');
+            const deleteAccountButton = document.getElementById('deleteAccount');
+
+            // Verifica se há usuário logado
+            if (localStorage.getItem('userData')) {
+                const userData = JSON.parse(localStorage.getItem('userData'));
+                userIcon.textContent = userData.username.charAt(0).toUpperCase(); // Exibe a inicial do usuário
+
+                userIcon.addEventListener('click', function() {
+                    document.getElementById('username').value = userData.username;
+                    document.getElementById('email').value = userData.email;
+                    document.getElementById('password').value = userData.password;
+                    profileModal.style.display = 'block'; // Exibe o modal de perfil
+                });
+            } else {
+                userIcon.addEventListener('click', function() {
+                    const username = prompt('Digite seu nome de usuário:');
+                    const email = prompt('Digite seu e-mail:');
+                    const password = prompt('Digite sua senha:');
+                    if (username && email && password) {
+                        const userData = {
+                            username: username,
+                            email: email,
+                            password: password
+                        };
+                        localStorage.setItem('userData', JSON.stringify(userData));
+                        userIcon.textContent = username.charAt(0).toUpperCase(); // Atualiza o ícone
+                    }
+                });
+            }
+
+            // Gerenciar o modal de perfil
+            profileForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                const newUserData = {
+                    username: document.getElementById('username').value,
+                    email: document.getElementById('email').value,
+                    password: document.getElementById('password').value
+                };
+                localStorage.setItem('userData', JSON.stringify(newUserData));
+                userIcon.textContent = newUserData.username.charAt(0).toUpperCase(); // Atualiza o ícone
+                profileModal.style.display = 'none'; // Fecha o modal de perfil
+            });
+
+            closeModal.addEventListener('click', function() {
+                profileModal.style.display = 'none'; // Fecha o modal de perfil
+            });
+
+            window.onclick = function(event) {
+                if (event.target == profileModal) {
+                    profileModal.style.display = 'none'; // Fecha o modal se clicar fora dele
+                }
+            }
+
+            // Excluir conta
+            deleteAccountButton.addEventListener('click', function() {
+                const usernameToDelete = prompt('Digite seu nome de usuário para confirmar a exclusão da conta:');
+                const savedData = localStorage.getItem('userData');
+                if (savedData) {
+                    const userData = JSON.parse(savedData);
+                    if (usernameToDelete === userData.username) {
+                        localStorage.removeItem('userData');
+                        alert('Conta excluída com sucesso!');
+                        window.location.reload(); // Recarrega a página para atualizar o estado
+                    } else {
+                        alert('Usuario incorreto ou Ação cancelada.');
+                    }
+                }
+            });
+        });
+    </script>
+</html>

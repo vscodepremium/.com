@@ -1,0 +1,299 @@
+/* Reset básico para garantir consistência entre navegadores */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Estilo para o corpo */
+body {
+    background: linear-gradient(135deg, #2a2a72, #009ffd); /* Gradiente escuro roxo e azul */
+    color: #fff;
+    font-size: 16px;
+    line-height: 1.6;
+    padding: 0;
+    margin: 0;
+}
+
+/* Cabeçalho */
+.header {
+    background-color: rgba(0, 0, 0, 0.8); /* Transparente escuro */
+    color: #fff;
+    padding: 15px 0;
+    position: static; /* Normalmente posicionado */
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.header h1 {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.navbar a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 1em;
+    transition: color 0.3s, border-bottom 0.3s;
+    border-bottom: 2px solid transparent;
+    padding-bottom: 5px;
+}
+
+.navbar a:hover {
+    color: #ff9f00; /* Laranja dourado */
+    border-bottom: 2px solid #ff9f00;
+}
+
+/* Estilo para o conteúdo principal */
+main {
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+/* Seções */
+.home, .services, .portfolio, .contact {
+    margin-bottom: 40px;
+    padding: 20px;
+}
+
+/* Seção de boas-vindas */
+.home {
+    background: linear-gradient(135deg, #3c3b6c, #5a5b8c); /* Gradiente roxo escuro */
+    text-align: center;
+    padding: 80px 20px; /* Mais espaço para efeito visual */
+}
+
+.home-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.home h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: #ff9f00; /* Laranja dourado */
+    color: #000;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1.2em;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.cta-button:hover {
+    background-color: #ff7b00; /* Laranja mais escuro */
+    transform: scale(1.05);
+}
+
+/* Seção de serviços */
+.services {
+    background-color: #282c34; /* Escuro suave */
+    text-align: center;
+}
+
+.services-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.service-item {
+    background: #3a3f47; /* Cinza escuro */
+    border: 1px solid #444;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px;
+    width: 30%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.service-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Seção de portfólio */
+.portfolio {
+    background-color: #1c1e26; /* Preto azul claro */
+    text-align: center;
+}
+
+.portfolio-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Seção de contato */
+.contact {
+    background-color: #282c34; /* Escuro suave */
+    text-align: center;
+}
+
+.contact-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Rodapé */
+.footer {
+    background-color: rgba(0, 0, 0, 0.8); /* Transparente escuro */
+    color: #fff;
+    padding: 15px 0;
+    position: static; /* Normalmente posicionado */
+    width: 100%;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.footer-nav a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 1em;
+    transition: color 0.3s;
+}
+
+.footer-nav a:hover {
+    color: #ff9f00; /* Laranja dourado */
+}
+
+/* Estilo para o modal de perfil */
+.modal {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 1001;
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 500px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal h2 {
+    margin-bottom: 15px;
+}
+
+.modal form {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal label {
+    margin: 10px 0 5px;
+}
+
+.modal input {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.modal button {
+    background-color: #004d99; /* Azul escuro */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.modal button:hover {
+    background-color: #003366; /* Azul mais escuro */
+    transform: scale(1.05);
+}
+
+.delete-button {
+    background-color: #e74c3c; /* Vermelho */
+    margin-top: 10px;
+}
+
+.delete-button:hover {
+    background-color: #c0392b; /* Vermelho mais escuro */
+}
+
+/* Estilo para o ícone de usuário */
+.user-account {
+    position: relative;
+}
+
+.user-icon {
+    width: 40px;
+    height: 40px;
+    background-color: #ff9f00; /* Laranja dourado */
+    color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.user-icon:hover {
+    background-color: #e5c100; /* Amarelo mais escuro */
+    transform: scale(1.1);
+}
+#profileModal ,h2 ,label{
+    color: #000;
+}
